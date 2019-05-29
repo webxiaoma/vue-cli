@@ -23,3 +23,9 @@ vue  的脚手架
 
 
 - webpack-4.32.2
+
+
+- [dotenv插件注入process.env 环境变量](https://github.com/motdotla/dotenv)
+
+
+- [webpack插件 webpack-parallel-uglify-plugin](https://www.cnblogs.com/tugenhua0707/p/9569762.html)
