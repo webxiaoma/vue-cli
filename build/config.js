@@ -16,11 +16,25 @@ module.exports = merge({
         evn:{}, // 环境变量
         assetsPublicPath:"", // 公共路径
         autoOpenBrowser:'',
+
+        /**
+         * devServe配置 webpack-dev-server
+         **/
+        autoOpenBower:false,
+        host:'localhost',
+        port:'8081',
+        useOverlay:"",
+        hot:true, // 模块热替换
+        systemErrorNotifier:true, //开启系统错误通知
+        /**
+         * source-map
+         */
+        devtool:'inline-source-map'
+
     },
 
     // 生产环境
     build:{
-
         /**
          * 路径配置
          */
@@ -42,11 +56,13 @@ module.exports = merge({
         isGzip:false,
         gzipType:['js','css'],
 
-        
 
     },
     public: { // 公共配置
         templateIndexHtml: path.resolve(__dirname, '../index.html'), // html模板
+        addProcessEvn:{ // 加入系统环境变量,已添加的系统变量不会再次被添加
+            
+        }
 
     }
 },proConfig)

@@ -12,7 +12,7 @@ module.exports = {
     app: "./src/main.js"
   },
   output: {
-    filename: "[name].js",
+    filename: "[name]-[contenthash:7].js",
     path: path.resolve(__dirname, '../dist'),
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath

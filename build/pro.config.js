@@ -8,8 +8,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCss = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const baseWebpackConfig = require("./base.js")
+const TerserPlugin = require('terser-webpack-plugin');
+const baseWebpackConfig = require("./base.config.js")
 const config = require("./config.js")
 
 const proWebpackConfig = merge(baseWebpackConfig,{
@@ -39,19 +39,23 @@ const proWebpackConfig = merge(baseWebpackConfig,{
                 ignore: ['.*']
             }
         ]),
-        new webpack.optimize.UglifyJsPlugin({
-            //删除注释
-            output: {
-                comments: !config.build.delDubgger
-            },
-            //删除console 和 debugger  删除警告
-            compress: {
-                warnings: !config.build.delDubgger,
-                drop_debugger: config.build.delDubgger,
-                drop_console: config.build.delDubgger
-            }
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     //删除注释
+        //     output: {
+        //         comments: !config.build.delDubgger
+        //     },
+        //     //删除console 和 debugger  删除警告
+        //     compress: {
+        //         warnings: !config.build.delDubgger,
+        //         drop_debugger: config.build.delDubgger,
+        //         drop_console: config.build.delDubgger
+        //     }
+        // })
     ],
+    optimization: {
+        noEmitOnErrors: true, //跳过生成阶段(emitting phase)
+        minimizer: [],
+    }
 })
 
 
@@ -62,12 +66,29 @@ const proWebpackConfig = merge(baseWebpackConfig,{
 
 if (config.build.compress){
     proWebpackConfig.plugins.push(
-        new OptimizeCss({
+        new OptimizeCss({ // css代码压缩
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
             cssProcessorPluginOptions: {
                 preset: ['default', { discardComments: { removeAll: true } }],
             },
+        })
+    )
+
+    proWebpackConfig.optimization.minimizer.push(
+        new TerserPlugin({ //js代码压缩
+            test: /\.js(\?.*)?$/i,
+            terserOptions: {
+                output: { //删除注释
+                    comments: !config.build.delDubgger
+                },
+                compress: {//删除console 和 debugger  删除警告
+                    warnings: !config.build.delDubgger,
+                    drop_debugger: config.build.delDubgger,
+                    drop_console: config.build.delDubgger
+                }
+            }
+
         })
     )
 }
