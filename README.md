@@ -29,3 +29,11 @@ vue  的脚手架
 
 
 - [webpack插件 webpack-parallel-uglify-plugin](https://www.cnblogs.com/tugenhua0707/p/9569762.html)
+
+
+- [ProvidePlugin 自动加载模块](https://webpack.docschina.org/plugins/provide-plugin/#src/components/Sidebar/Sidebar.jsx)
+
+
+## 文章
+
+- [基于 webpack 的持久化缓存方案](https://github.com/pigcan/blog/issues/9)

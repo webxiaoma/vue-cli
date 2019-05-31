@@ -13,19 +13,18 @@ if (existsConfig){
 module.exports = merge({
     // 开发环境下
     dev:{
-        evn:{}, // 环境变量
         assetsPublicPath:"", // 公共路径
-        autoOpenBrowser:'',
 
         /**
          * devServe配置 webpack-dev-server
          **/
-        autoOpenBower:false,
+        autoOpenBower: false, // 自动打开浏览器
         host:'localhost',
         port:'8081',
         useOverlay:"",
         hot:true, // 模块热替换
-        systemErrorNotifier:true, //开启系统错误通知
+        systemErrorNotifier:true, //是否开启系统错误通知
+
         /**
          * source-map
          */
@@ -42,14 +41,23 @@ module.exports = merge({
         assetsDir:'static',
         assetsPublicPath:'https://webxiaoma.com',
 
+
+
+        /**
+         * source-map 配置
+         */
+        useCssMap:false, // 是否开启css source-map
+        useJsMap: false, // 是否开启js source-map
+        devtool: 'source-map', // source-map类型
+        
         /**
          * 代码压缩
          * @http CompressionWebpackPlugin 启用gzip压缩 https://github.com/webpack-contrib/compression-webpack-plugin
          * @msg 普通压缩和gzip压缩互不影响
          */
             
-        // 普通压缩(使用UglifyjsWebpackPlugin)
-        compress:true,
+        // 普通压缩(使用terser-webpack-plugin)
+        compress:true, // 是否启用普通压缩
         delDubgger: true, // 打包时是否删除console 和 debugger  删除警告，注释
 
         //启用gzip压缩
