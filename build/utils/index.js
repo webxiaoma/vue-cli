@@ -3,6 +3,7 @@
 
 const path = require('path')
 const notifier = require('node-notifier')
+const config = require('../config.js');
 
 /**
  * 添加环境变量
@@ -14,10 +15,8 @@ exports.addEvn = (evnObj) =>{
     }
 
    var keys = Object.keys(evnObj)
-
    
 }
-
 
 
 /**
@@ -27,6 +26,19 @@ exports.log = function (){
    console.log(...arguments,"\n")
 }
 
+
+/**
+ * 
+ */
+exports.assetsPath = function (_path) {
+   const assetsSubDirectory = process.env.NODE_ENV === 'production'
+     ? config.build.assetsDir
+     : config.dev.assetsDir
+ 
+   return path.posix.join(assetsSubDirectory, _path)
+ }
+
+ 
 
 /**
  * 系统通知

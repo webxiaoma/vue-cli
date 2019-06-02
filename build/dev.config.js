@@ -30,7 +30,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         port:config.dev.port ||'8080', // 端口访问
         hot: config.dev.hot, // 热模块替换功能
         compress: true, // 启用gzip压缩
-        // quiet:true, // 是否禁止输出编译信息
+        quiet:true, // 是否禁止输出编译信息
         historyApiFallback: true,
     },
     plugins:[
@@ -46,18 +46,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 module.exports = new Promise((resolve, reject) =>{
     let host = config.dev.host;
     let prot = config.dev.port;
-    // devWebpackConfig.plugins.push(
-    //     new FriendlyErrorsPlugin({
-    //         compilationSuccessInfo: {
-    //             messages: [`项目已启动成功: ${chalk.green(`http://${host}:${prot}`)}`],
-    //             notes: ['可以尽情的写bug了...']
-    //         },
-    //         onErrors: config.dev.systemErrorNotifier?function ( severity, errors) {
-    //             notifierCallback(severity, errors)
-    //         }:null,
+    devWebpackConfig.plugins.push(
+        new FriendlyErrorsPlugin({
+            compilationSuccessInfo: {
+                messages: [`项目已启动成功: ${chalk.green(`http://${host}:${prot}`)}`],
+                notes: ['可以尽情的写bug了...']
+            },       
+            onErrors: config.dev.systemErrorNotifier?function ( severity, errors) {
+                notifierCallback(severity, errors)
+            }:null,
 
-    //     })
-    // )
+        })
+    )
 
    
     resolve(devWebpackConfig)

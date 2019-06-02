@@ -9,8 +9,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack');
+const glob = require("glob-all");
 const baseWebpackConfig = require("./base.config.js")
 const config = require("./config.js")
+
+const referencedWebpackConfig = config.build.webpackConfig()
 
 const proWebpackConfig = merge(baseWebpackConfig,{
     mode: "production",
@@ -18,7 +22,7 @@ const proWebpackConfig = merge(baseWebpackConfig,{
     output: {
         filename: `${config.build.assetsDir}/js/[name]-[contenthash:7].js`,
         // 为生成的chunk其名字
-        chunkFilename: `${config.build.assetsDir}/js/[name].js`,
+        // chunkFilename: `${config.build.assetsDir}/js/[name]-chunk.js`,
         path: config.build.assetsRoot,
         publicPath: process.env.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
@@ -33,50 +37,46 @@ const proWebpackConfig = merge(baseWebpackConfig,{
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: `${config.build.assetsDir}/css/[name]-[contenthash:7].css`,
-            chunkFilename: '[name].css'
+            // chunkFilename: '[name]-[contenthash:7].css'
         }),
         new CopyWebpackPlugin([
             {
                 from: path.resolve(__dirname, '../public'),
-                to: "static",
+                to: "static",    
                 ignore: ['.*']
             }
         ]),
+        new PurifyCSSPlugin({ // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
+            // Give paths to parse for rules. These should be absolute!
+            paths: glob.sync([
+                path.resolve(__dirname, '../*.html'), // 处理根目录下的html文件
+                path.resolve(__dirname, '../src/*.js') // 处理src目录下的js文件
+            ]),
+        })
     ],
     optimization: {
         noEmitOnErrors: true, //跳过生成阶段(emitting phase)
         minimizer: [], // 压缩配置
         splitChunks: { // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
             chunks: 'all',
-            name:true,
-            automaticNameDelimiter:"-",
-            minSize: 200, //(默认是30000)：形成一个新代码块最小的体积
-            minChunks: 1,
-            maxInitialRequests: 3, //（默认是3）：一个入口最大的并行请求数
-            maxAsyncRequests: 5, //（默认是5）：按需加载时候最大的并行请求数。
             cacheGroups: {
-                // default: {   
-                //     minChunks: 2,
-                //     priority: -20,
-                //     reuseExistingChunk: true,
-                // },
-                vendors: {
-                    test: /[\\/]node_modules[\\/](jquery)[\\/]/,
-                    priority: -10,
-                    name:'public'
+                vendor: {
+                    test:/[\\/]node_modules[\\/]/,
+                    priority: 1, 
+                    name:'vendor-chunk'
                 },
-                vue: {
-                    test: /[\\/]node_modules[\\/](vue)[\\/]/,
-                    priority: -10,
-                    name: 'vue'
-                }
+                common: {
+                    name: "common-chunk",
+                    chunks: "all",
+                    minSize: 10,
+                    priority: 0
+                  },
+                
             }
         },
-        // runtimeChunk: {
-        //     name: 'manifest'
-        // }
+        runtimeChunk:true,
     }
-})
+},referencedWebpackConfig)
 
 
 /**

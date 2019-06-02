@@ -5,7 +5,8 @@ module.exports = {
       {
         "targets": {
           // "esmodules": false
-        }
+        },
+        "modules": false  
       }
     ]
   ],
