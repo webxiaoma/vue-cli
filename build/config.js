@@ -55,7 +55,7 @@ module.exports = merge({
          */
             
         // 普通压缩(使用terser-webpack-plugin)
-        compress:false, // 是否启用普通压缩
+        compress:true, // 是否启用普通压缩
         delDubgger: true, // 打包时是否删除console 和 debugger  删除警告，注释
 
         //启用gzip压缩

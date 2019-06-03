@@ -3,14 +3,15 @@ module.exports = {
     [
       "@babel/preset-env",
       {
-        "targets": {
+        targets: {
           // "esmodules": false
         },
-        "modules": false  
+        // modules: true
       }
     ]
   ],
-  // plugins: [
-    
-  // ]
-}
+  plugins: [
+    // "module:@babel/helper-module-imports",
+    // "@babel/plugin-syntax-dynamic-import"
+  ]
+};

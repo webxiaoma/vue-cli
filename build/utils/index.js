@@ -14,10 +14,9 @@ exports.addEvn = (evnObj) =>{
        process.exit(1)
     }
 
-   var keys = Object.keys(evnObj)
+   // var keys = Object.keys(evnObj)
    
 }
-
 
 /**
  * 日志输出
@@ -28,7 +27,7 @@ exports.log = function (){
 
 
 /**
- * 
+ * 静态资源路径合并（图片，css,font,音频）
  */
 exports.assetsPath = function (_path) {
    const assetsSubDirectory = process.env.NODE_ENV === 'production'

@@ -8,6 +8,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const config = require('./config.js');
 const {assetsPath} = require("./utils")
 
+console.log(process.env.NODE_ENV !== 'production')
+
 const baseWebpackConfig =  {
   context: path.resolve(__dirname, "../"),
   entry: {
@@ -33,19 +35,24 @@ const baseWebpackConfig =  {
     rules: [
         {
           test: /\.vue$/,
-          use: ['vue-loader']
+          loader:'vue-loader',
+          options:{
+            // loaders
+          }
         },
         {
           test: /\.js$/, 
           use: ["babel-loader"],
           include: [path.resolve(__dirname, "../src")],
         },{
-          test: /\.css$/,
+          test: /\.(c|le)ss$/,
           use: [
             process.env.NODE_ENV !== 'production'
-            ?'style-loader' 
+            ?'vue-style-loader' 
             :MiniCssExtractPlugin.loader,
-            'css-loader'
+            'css-loader',
+            "postcss-loader",
+            "less-loader"
           ]
         },{
           test: /\.(png|jpe?g|gif)$/,

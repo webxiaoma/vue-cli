@@ -36,7 +36,7 @@ const proWebpackConfig = merge(baseWebpackConfig,{
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: `${config.build.assetsDir}/css/[name]-[contenthash:7].css`,
+            filename: `${config.build.assetsDir}/css/[name]-[hash:7].css`,
             // chunkFilename: '[name]-[contenthash:7].css'
         }),
         new CopyWebpackPlugin([
@@ -119,7 +119,6 @@ if (config.build.compress){
                     drop_console: config.build.delDubgger
                 }
             }
-
         })
     )
 }
