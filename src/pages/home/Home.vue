@@ -14,7 +14,7 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .HomeWrap{
     
 }

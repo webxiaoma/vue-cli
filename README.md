@@ -10,16 +10,14 @@ vue  的脚手架
 所需插件
 
 ```js
-"@babel/cli": "^7.4.4",
-"@babel/core": "^7.4.5",
-"@babel/preset-env": "^7.4.5",
-"babel-loader": "^8.0.6",
+- webpack 4.14.0 +
+- node8.0+
 ```
 
 ## 使用插件
 
 
-- webpack-4.32.2
+
 
 
 - [dotenv插件注入process.env 环境变量](https://github.com/motdotla/dotenv)
@@ -42,5 +40,19 @@ vue  的脚手架
 
 
 ## 问题
+
+
+- [mini-css-extract-plugin 插件打包不出css](https://segmentfault.com/q/1010000015853260)
+
+
+## 优化
+
+### Tree Shaking
+
+- [webpack-deep-scope-plugin 插件 webpack-deep-scope-plugin 插件依赖 node8.0+ 和 webpack 4.14.0 +]()
+
+- [Tree Shaking文章](https://www.cnblogs.com/tugenhua0707/p/9671618.html)
+
+
 
 

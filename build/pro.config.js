@@ -10,73 +10,86 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin").default;
 const glob = require("glob-all");
 const baseWebpackConfig = require("./base.config.js")
 const config = require("./config.js")
 
 const referencedWebpackConfig = config.build.webpackConfig()
 
-const proWebpackConfig = merge(baseWebpackConfig,{
+const proWebpackConfig = merge(
+  baseWebpackConfig,
+  {
     mode: "production",
-    devtool: config.build.useCssMap && config.build.useJsMap?config.build.devtool:"",
+    devtool:
+      config.build.useCssMap && config.build.useJsMap
+        ? config.build.devtool
+        : "",
     output: {
-        filename: `${config.build.assetsDir}/js/[name]-[contenthash:7].js`,
-        // 为生成的chunk其名字
-        // chunkFilename: `${config.build.assetsDir}/js/[name]-chunk.js`,
-        path: config.build.assetsRoot,
-        publicPath: process.env.NODE_ENV === 'production'
-            ? config.build.assetsPublicPath
-            : config.dev.assetsPublicPath
+      filename: `${config.build.assetsDir}/js/[name]-[contenthash:7].js`,
+      // 为生成的chunk其名字
+      // chunkFilename: `${config.build.assetsDir}/js/[name]-chunk.js`,
+      path: config.build.assetsRoot,
+      publicPath:
+        process.env.NODE_ENV === "production"
+          ? config.build.assetsPublicPath
+          : config.dev.assetsPublicPath
     },
-    plugins:[
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin({
-            filename: `${config.build.assetsDir}/css/[name]-[hash:7].css`,
-            // chunkFilename: '[name]-[contenthash:7].css'
-        }),
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, '../public'),
-                to: "static",    
-                ignore: ['.*']
-            }
-        ]),
-        new PurifyCSSPlugin({ // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
-            // Give paths to parse for rules. These should be absolute!
-            paths: glob.sync([
-                path.resolve(__dirname, '../*.html'), // 处理根目录下的html文件
-                path.resolve(__dirname, '../src/*.js') // 处理src目录下的js文件
-            ]),
-        })
+    plugins: [
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: '"production"'
+        }
+      }),
+      new CleanWebpackPlugin(),
+      new MiniCssExtractPlugin({
+        filename: `${config.build.assetsDir}/css/[name]-[hash:7].css`
+        // chunkFilename: '[name]-[contenthash:7].css'
+      }),
+      new CopyWebpackPlugin([
+        {
+          from: path.resolve(__dirname, "../public"),
+          to: "static/public",
+          ignore: [".*"]
+        }
+      ]),
+      new PurifyCSSPlugin({ // 还在使用旧api
+        // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
+        // Give paths to parse for rules. These should be absolute!
+        paths: glob.sync([
+          path.resolve(__dirname, "../*.html"), // 处理根目录下的html文件
+          path.resolve(__dirname, "../src/*.js"), // 处理src目录下的js文件
+          path.resolve(__dirname, "../src/*.vue") // 处理src目录下的Vue文件
+        ])
+      }),
+      // tree shaking js https://github.com/vincentdchan/webpack-deep-scope-analysis-plugin
+      new WebpackDeepScopeAnalysisPlugin()
     ],
     optimization: {
-        noEmitOnErrors: true, //跳过生成阶段(emitting phase)
-        minimizer: [], // 压缩配置
-        splitChunks: { // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
-            chunks: 'all',
-            cacheGroups: {
-                vendor: {
-                    test:/[\\/]node_modules[\\/]/,
-                    priority: 1, 
-                    name:'vendor-chunk'
-                },
-                common: {
-                    name: "common-chunk",
-                    chunks: "all",
-                    minSize: 10,
-                    priority: 0
-                  },
-                
-            }
-        },
-        runtimeChunk:true,
+      noEmitOnErrors: true, //跳过生成阶段(emitting phase)
+      minimizer: [], // 压缩配置
+      splitChunks: {
+        // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
+        chunks: "all",
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            priority: 1,
+            name: "vendor-chunk"
+          },
+          common: {
+            name: "common-chunk",
+            chunks: "all",
+            minSize: 10,
+            priority: 0
+          }
+        }
+      },
+      runtimeChunk: true
     }
-},referencedWebpackConfig)
+  },
+  referencedWebpackConfig
+);
 
 
 /**

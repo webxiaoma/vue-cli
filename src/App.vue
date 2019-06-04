@@ -1,6 +1,6 @@
 <template>
     <div class='app'>
-       <router-view></router-view>
+       <router-view/>
     </div>
 </template>
 
@@ -14,9 +14,8 @@
     }
 </script>
 
-<style  lang="less" scoped>
-@import "./theme/base.css";
-
+<style>
+/* @import "./theme/base.css"; */
 .app{
   width:100%;
   min-height:100vh;
