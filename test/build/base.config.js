@@ -45,17 +45,6 @@ const baseWebpackConfig = {
         use: ["babel-loader"],
         include: [path.resolve(__dirname, "../src")]
       },
-      // {
-      //   test: /\.less$/,
-      //   use: [
-      //     process.env.NODE_ENV !== "production"
-      //       ? "vue-style-loader"
-      //       : MiniCssExtractPlugin.loader,
-      //     "css-loader",
-      //     "postcss-loader",
-      //     "less-loader"
-      //   ]
-      // },
       {
         test: /\.css$/,
         use: [
@@ -97,13 +86,7 @@ const baseWebpackConfig = {
       //使用自带模板时，设置为false,使用自己的html模板是设置为true
       inject: true,
       template: config.public.templateIndexHtml,
-      minify: config.build.compress
-        ? {
-            removeComments: true, //去注释
-            collapseWhitespace: true, //压缩空格
-            removeAttributeQuotes: true //去除属性引用
-          }
-        : false
+      minify: false
     }),
     new VueLoaderPlugin()
   ]
@@ -120,7 +103,6 @@ if(config.public.useCdn.open){
       addCss:config.public.useCdn.cdn.css,
     }),
   )
-
 }
 
 

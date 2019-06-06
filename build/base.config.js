@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const config = require('./config.js');
-const {assetsPath} = require("./utils")
+const { assetsPath, loaderCss} = require("./utils")
 
 
 const baseWebpackConfig = {
@@ -33,6 +33,13 @@ const baseWebpackConfig = {
   externals: config.public.useCdn.open ? config.public.useCdn.externals : {},
   module: {
     rules: [
+      // css loader
+      ...loaderCss( 
+        process.env.NODE_ENV !== "production"
+          ? "vue-style-loader"
+          : MiniCssExtractPlugin.loader,
+        {}
+      ),
       {
         test: /\.vue$/,
         loader: "vue-loader",
@@ -44,27 +51,6 @@ const baseWebpackConfig = {
         test: /\.js$/,
         use: ["babel-loader"],
         include: [path.resolve(__dirname, "../src")]
-      },
-      // {
-      //   test: /\.less$/,
-      //   use: [
-      //     process.env.NODE_ENV !== "production"
-      //       ? "vue-style-loader"
-      //       : MiniCssExtractPlugin.loader,
-      //     "css-loader",
-      //     "postcss-loader",
-      //     "less-loader"
-      //   ]
-      // },
-      {
-        test: /\.css$/,
-        use: [
-          process.env.NODE_ENV !== "production"
-            ? "vue-style-loader"
-            : MiniCssExtractPlugin.loader,
-          "css-loader",
-          "postcss-loader"
-        ]
       },
       {
         test: /\.(png|jpe?g|gif)$/,

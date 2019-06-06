@@ -11,7 +11,6 @@ module.exports = {
     ]
   ],
   plugins: [
-    // "module:@babel/helper-module-imports",
-    // "@babel/plugin-syntax-dynamic-import"
+  
   ]
 };

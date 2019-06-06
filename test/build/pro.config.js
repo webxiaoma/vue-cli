@@ -59,34 +59,35 @@ const proWebpackConfig = merge(
         paths: glob.sync([
           path.resolve(__dirname, "../*.html"), // 处理根目录下的html文件
           path.resolve(__dirname, "../src/*.js"), // 处理src目录下的js文件
+          path.resolve(__dirname, "../src/*.css"), // 处理src目录下的Vue文件
           path.resolve(__dirname, "../src/*.vue") // 处理src目录下的Vue文件
         ])
       }),
       // tree shaking js https://github.com/vincentdchan/webpack-deep-scope-analysis-plugin
       new WebpackDeepScopeAnalysisPlugin()
     ],
-    optimization: {
-      noEmitOnErrors: true, //跳过生成阶段(emitting phase)
-      minimizer: [], // 压缩配置
-      splitChunks: {
-        // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
-        chunks: "all",
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            priority: 1,
-            name: "vendor-chunk"
-          },
-          common: {
-            name: "common-chunk",
-            chunks: "all",
-            minSize: 10,
-            priority: 0
-          }
-        }
-      },
-      runtimeChunk: true
-    }
+    // optimization: {
+    //   noEmitOnErrors: true, //跳过生成阶段(emitting phase)
+    //   minimizer: [], // 压缩配置
+    //   splitChunks: {
+    //     // 提取公共代码 查看 https://webpack.docschina.org/plugins/split-chunks-plugin/
+    //     chunks: "all",
+    //     cacheGroups: {
+    //       vendor: {
+    //         test: /[\\/]node_modules[\\/]/,
+    //         priority: 1,
+    //         name: "vendor-chunk"
+    //       },
+    //       common: {
+    //         name: "common-chunk",
+    //         chunks: "all",
+    //         minSize: 10,
+    //         priority: 0
+    //       }
+    //     }
+    //   },
+    //   runtimeChunk: true
+    // }
   },
   referencedWebpackConfig
 );

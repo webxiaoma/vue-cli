@@ -1,6 +1,9 @@
 'use strict'
 
 process.env.NODE_ENV = "development"
+const config = require("./config.js")
+require("./utils").addEvn(config.public.addProcessEvn)
+
 
 const path = require('path')
 const webpack = require('webpack')
@@ -10,8 +13,6 @@ const chalk = require('chalk')
 const open = require('open')
 const progressBar = require('single-line-log')
 const baseWebpackConfig = require("./base.config.js")
-const config = require("./config.js")
-const {log,notifierCallback} = require("./utils")
 
 const devWebpackConfig = merge(baseWebpackConfig, {
     mode: "development",

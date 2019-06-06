@@ -2,6 +2,13 @@
   "name": "vue-cli",
   "version": "1.0.0",
   "description": "vue  的脚手架",
+   "sideEffects": [
+      "*.less",
+      "*.sass",
+      "*.style",
+      "*.css",
+      "*.vue"
+    ],
   "scripts": {
     "start": "npx webpack-dev-server --config build/dev.config.js",
     "build": "npx webpack --config build/pro.config.js"

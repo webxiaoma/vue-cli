@@ -1,5 +1,7 @@
 'use strict'
-process.env.NODE_ENV = "production"
+process.env.NODE_ENV = "production";
+const config = require("./config.js")
+require("./utils").addEvn(config.public.addProcessEvn)
 
 const path = require("path")
 const webpack = require('webpack')
@@ -13,7 +15,6 @@ const PurifyCSSPlugin = require('purifycss-webpack');
 const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin").default;
 const glob = require("glob-all");
 const baseWebpackConfig = require("./base.config.js")
-const config = require("./config.js")
 
 const referencedWebpackConfig = config.build.webpackConfig()
 
@@ -53,17 +54,18 @@ const proWebpackConfig = merge(
           ignore: [".*"]
         }
       ]),
-      new PurifyCSSPlugin({ // 还在使用旧api
-        // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
-        // Give paths to parse for rules. These should be absolute!
-        paths: glob.sync([
-          path.resolve(__dirname, "../*.html"), // 处理根目录下的html文件
-          path.resolve(__dirname, "../src/*.js"), // 处理src目录下的js文件
-          path.resolve(__dirname, "../src/*.vue") // 处理src目录下的Vue文件
-        ])
-      }),
+      // new PurifyCSSPlugin({ // 还在使用旧api
+      //   // tree shaking css https://github.com/webpack-contrib/purifycss-webpack
+      //   // Give paths to parse for rules. These should be absolute!
+      //   paths: glob.sync([
+      //     path.resolve(__dirname, "../*.html"), // 处理根目录下的html文件
+      //     path.resolve(__dirname, "../src/*.js"), // 处理src目录下的js文件
+      //     path.resolve(__dirname, "../src/*.vue") // 处理src目录下的Vue文件
+      //   ])
+      // }),
+
       // tree shaking js https://github.com/vincentdchan/webpack-deep-scope-analysis-plugin
-      new WebpackDeepScopeAnalysisPlugin()
+      // new WebpackDeepScopeAnalysisPlugin()
     ],
     optimization: {
       noEmitOnErrors: true, //跳过生成阶段(emitting phase)

@@ -31,11 +31,11 @@ export default {
 }
 </script>
 
-<style >
+<style lang="less" scoped>
 .layoutWrap{
-   
+   background: red;
 }
 .layoutWrap .main{
   background:orange;
 }
-</style>
+</style>   

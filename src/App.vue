@@ -14,8 +14,9 @@
     }
 </script>
 
-<style>
-/* @import "./theme/base.css"; */
+<style lang="less" scoped>
+@import "./theme/base.css";
+
 .app{
   width:100%;
   min-height:100vh;
