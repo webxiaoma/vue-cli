@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "start": "npx webpack-dev-server --config build/dev.config.js",
-    "build": "npx webpack --config build/pro.config.js"
+    "build": "npx webpack --config build/pro.config.js",
+    "test":"node build/dev.config.js"
   },
   "repository": {
     "type": "git",

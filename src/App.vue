@@ -5,13 +5,13 @@
 </template>
 
 <script>
-    export default {
-       data() {
-        return {
-            datas: [1, 2, 3, 4]
-        }
-      }
+export default {
+  data() {
+    return {
+        datas: [1, 2, 3, 4]
     }
+  }
+}
 </script>
 
 <style lang="less" scoped>
