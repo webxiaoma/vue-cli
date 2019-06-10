@@ -1,22 +1,22 @@
 'use strict'
 process.env.NODE_ENV = "production";
 const config = require("./config.js")
-require("./utils").addEvn(config.public.addProcessEvn)
+require("./utils").addEvn(config.public.addProcessEvn);
 
-const path = require("path")
-const webpack = require('webpack')
-const merge = require('webpack-merge')
+const path = require("path");
+const webpack = require('webpack');
+const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin").default;
 const glob = require("glob-all");
-const baseWebpackConfig = require("./base.config.js")
+const baseWebpackConfig = require("./base.config.js");
 
-const referencedWebpackConfig = config.build.webpackConfig()
+const referencedWebpackConfig = config.build.webpackConfig();
 
 const proWebpackConfig = merge(
   baseWebpackConfig,

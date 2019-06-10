@@ -18,7 +18,7 @@ exports.addEvn = (evnObj) =>{
    Object.keys(evnObj).forEach(key=>{
       if (!process.env[key]){
          process.env[key] = evnObj[key]
-       }
+      }
    })
 }
 
