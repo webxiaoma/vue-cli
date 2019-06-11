@@ -89,11 +89,12 @@ exports.loaderCss = function(preset,options={}){
 /**
  * 系统通知
  */
-exports.notifierCallback = (severity, errors) => {
+exports.notifier = (severity, errors) => {
 
       if (severity !== 'error') return
 
       const error = errors[0]
+      console.log(error)
       const filename = error.file && error.file.split('!').pop()
 
       notifier.notify({

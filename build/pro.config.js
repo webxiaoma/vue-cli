@@ -159,6 +159,8 @@ if (config.build.isGzip){
 }
 
 
+webpack(proWebpackConfig,(err, stats) => {
+  console.log(stats)
 
-
-module.exports = proWebpackConfig;
+  // 记录结果...
+})

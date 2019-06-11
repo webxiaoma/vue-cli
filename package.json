@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "start": "npx webpack-dev-server --config build/dev.config.js",
-    "build": "npx webpack --config build/pro.config.js",
-    "test":"node build/dev.config.js"
+    "build": "node build/pro.config.js",
+    "test": "node build/dev.config.js"
   },
   "repository": {
     "type": "git",
@@ -53,7 +53,6 @@
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.7.0",
     "node-notifier": "^5.4.0",
-    "open": "^6.3.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "portfinder": "^1.0.20",
     "postcss-loader": "^3.0.0",

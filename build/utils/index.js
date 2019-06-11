@@ -89,15 +89,15 @@ exports.loaderCss = function(preset,options={}){
 /**
  * 系统通知
  */
-exports.notifierCallback = (severity, errors) => {
+exports.notifier = (severity, errors) => {
 
       if (severity !== 'error') return
 
       const error = errors[0]
-      const filename = error.file && error.file.split('!').pop()
-
+      const filename = error.file && error.file.split('!').pop().split("?")[0]
+  
       notifier.notify({
-         title: "项目通知",
+         title: "项目错误通知",
          message: severity + ': ' + error.name,
          subtitle: filename || '',
          icon: path.join(__dirname, 'manong.jpg')

@@ -1,6 +1,7 @@
 <template>
     <div class="footer">
-         Footer111222
+         Foote 
+         <p>{{aaa}}</p>
     </div>
 </template>
 
@@ -8,8 +9,12 @@
 export default {
     data(){
         return {
-            
+            aaa:111,
+            name:'King'
         }
+    },
+    methods:{
+      
     }
 }
 </script>
