@@ -8,7 +8,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const config = require('./config.js');
 const { assetsPath, loaderCss} = require("./utils")
 
-
+console.log(path.resolve(__dirname, "../"))
 const baseWebpackConfig = {
   context: path.resolve(__dirname, "../"),
   entry: {

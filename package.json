@@ -12,7 +12,9 @@
   "scripts": {
     "start": "npx webpack-dev-server --config build/dev.config.js",
     "build": "node build/pro.config.js",
-    "test": "node build/dev.config.js"
+    "test": "node build/dev.config.js",
+    "serve":"vue-server serve",
+    "b":"vue-server build"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-         Foote 
+         Foote
          <p>{{aaa}}</p>
     </div>
 </template>
@@ -12,6 +12,9 @@ export default {
             aaa:111,
             name:'King'
         }
+    },
+    created(){
+      console.log(111)
     },
     methods:{
       
