@@ -10,7 +10,8 @@ module.exports = {
     //   }
     // ]
     [
-      "../packages/babel/babel-preset-pro-vue",
+      // "../packages/babel/babel-preset-pro-vue",
+      '@web-pro/babel-preset-pro-vue'
     ]
   ],
   plugins: []

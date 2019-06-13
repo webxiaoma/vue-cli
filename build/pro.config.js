@@ -160,7 +160,7 @@ if (config.build.isGzip){
 
 
 webpack(proWebpackConfig,(err, stats) => {
-  console.log(stats)
+  // console.log(stats)
 
   // 记录结果...
 })

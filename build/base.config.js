@@ -43,9 +43,6 @@ const baseWebpackConfig = {
       {
         test: /\.vue$/,
         loader: "vue-loader",
-        options: {
-          loaders: {}
-        }
       },
       {
         test: /\.js$/,

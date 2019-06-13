@@ -5,6 +5,10 @@
 </template>
 
 <script>
+let fun = ()=>{
+  console.log(1111)
+}
+fun()
 export default {
   data() {
     return {
@@ -17,7 +21,7 @@ export default {
 <style lang="less" scoped>
 @import "./theme/base.css";
 
-.app{
+.app{ 
   width:100%;
   min-height:100vh;
 }
