@@ -7,7 +7,8 @@
     "build": "node build/pro.config.js",
     "test": "node build/dev.config.js",
     "serve": "vue-server serve",
-    "b": "vue-server build"
+    "b": "vue-server build",
+    "dll": "vue-server dll"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,8 @@
   },
   "devDependencies": {
     "@web-pro/babel-preset-pro-vue": "^1.0.0-beta.3",
-    "@web-pro/vue-server": "^1.0.0-beta.2"
+    "@web-pro/vue-server": "^1.0.0-beta.2",
+    "happypack": "^5.0.1"
   },
   "browserslist": [
     "> 1%",
