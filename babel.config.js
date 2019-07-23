@@ -1,18 +1,16 @@
 module.exports = {
   presets: [
-    // [
-    //   "@babel/preset-env",
-    //   {
-    //     targets: {
-    //       // "esmodules": false
-    //     },
-    //     // modules: true
-    //   }
-    // ]
     [
-      // "../packages/babel/babel-preset-pro-vue",
-      '@web-pro/babel-preset-pro-vue'
+      "../../../../babel/babel-preset-pro-vue",
     ]
   ],
-  plugins: []
+  plugins: [
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
+  ]
 };
