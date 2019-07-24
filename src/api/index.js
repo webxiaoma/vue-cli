@@ -1,3 +1,3 @@
-import  requestMethods from "./requestMethods";
+import apis from "./apis";
 
-export { requestMethods };
+export { apis };

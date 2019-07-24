@@ -1,10 +1,5 @@
-import PcBtn from "./PcBtn";
-import PcFooter from "./PcFooter";
-import PcForm from "./PcForm";
-import MobileFooter from "./MobileFooter";
-import Float from "./Float";
-import Map from "./Map";
-import FloatForm from "./FloatForm";
+import Header from "./Header";
+import Footer from "./Footer";
 
 
-export { PcBtn, PcFooter, PcForm, MobileFooter, Float, Map, FloatForm};
+export {Header,Footer};

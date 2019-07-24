@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import {Header,Footer,BottomBar} from '@/components'
+import {Header,Footer} from '@/components'
 export default {
     data(){
         return{
@@ -23,18 +23,17 @@ export default {
     components:{
         Header,
         Footer,
-        BottomBar
     }
 }
 </script>
 
 <style lang="less" scoped>
 .layout{
-    .main{
-         margin-bottom:80px;
-    }
-    .footerWrap{
-        margin-top:40px;
-    }
+   min-height:100vh;
+   display: flex;
+   flex-direction: column;
+   .main{
+       flex:1;
+   }
 }
 </style>

@@ -1,23 +1,15 @@
-const IP_PROXY = 'http://www.longwenedu.com/' // 线上接口
-
 module.exports = {
     // 开发环境下
     dev: {
         hot: true,
-        proxyTable: {
-            "/api": {
-                target: IP_PROXY,
-                changeOrigin: true,
-                pathRewrite: {
-                   "^/api": ""
-                }
-            }
-        }, // 配置代理
+        proxyTable: {// 配置代理
+           
+        }, 
     },
 
     // 生产环境
     build: {
-        baseUrl:"./aaaa/",
+        baseUrl:"/",
     },
     public:{
         externals: {// 排除打包库
