@@ -1,0 +1,49 @@
+
+
+body,ol,ul,li,div,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select,a,span,i{
+    margin:0;
+    padding:0;
+    border:0;
+    box-sizing: border-box;
+    font-weight:normal;
+} 
+
+body{
+    font-size:14px;
+    font-family:  "Microsoft YaHei","Arial","黑体","宋体",sans-serif;
+    min-height:100%;
+    min-height:100vh;
+}
+html{
+    width:100%;
+    min-height:100%;
+}
+a{color:rgba(24,144,255,1);text-decoration:none;transition:0.3s;} 
+a:hover{opacity:0.7;}
+
+a:link,
+a:active,
+a:visited{
+    background: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;  
+}
+
+em{font-style:normal} 
+
+li{list-style:none} 
+
+img{border:0;vertical-align:middle} 
+
+table{border-collapse:collapse;border-spacing:0} 
+
+p{word-wrap:break-word} 
+
+
+
+// 响应式尺寸
+@screen-xl:1920px;  // 大于1920px
+@screen-lg:1200px;  // 大于1200px
+@screen-md:992px;   // 大于992px
+@screen-sm:768px;   // 大于768px
+@screen-xs:768px;   // 小于768px
