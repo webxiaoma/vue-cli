@@ -6,7 +6,7 @@
                     <!-- <p  @click="controlNav">
                          <i :class="!isAsideNav?'iconfont icon-shouqi':'iconfont icon-zhankai'"></i>
                     </p> -->
-                    <p  @click="controlNav">
+                    <p  @click="controlDrawerNav">
                          <i :class="!isAsideNav?'iconfont icon-shouqi':'iconfont icon-zhankai'"></i>
                     </p>
                 </div>
@@ -24,12 +24,15 @@ export default {
         }
     },
     computed: {
-       ...mapState(['isAsideNav'])
+       ...mapState(['isAsideNav',"isDrawerNav"])
     },
     methods:{
-        ...mapActions(['navChange']),
+        ...mapActions(['navChange',"drawerChange"]),
         controlNav(){ // 控制导航
             this.navChange(!this.isAsideNav)
+        },
+        controlDrawerNav(){
+         this.navChange(!this.isDrawerNav)
         },
         exitLogin(){
                 this.$router.push('/login')

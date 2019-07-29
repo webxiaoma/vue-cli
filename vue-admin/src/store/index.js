@@ -18,6 +18,9 @@ export default new Vuex.Store({
   actions: {
     navChange({ commit }, val) {
       commit("NAV_CHANGE", val);
+    },
+    drawerChange({ commit }, val){ // 导航drawer变化
+      commit("DRAWER_CHANGE", val);
     }
   },
   mutations: {
@@ -26,8 +29,10 @@ export default new Vuex.Store({
       state.isAsideNav = val;
     },
     IS_LOGIN_PAGE(state, val) {
-      // 控制导航栏变化
       state.isLoginPage = val.status;
+    },
+    DRAWER_CHANGE(state, val){ // 导航drawer变化
+      state.isDrawerNav = val.status;
     }
   },
   strict: false,

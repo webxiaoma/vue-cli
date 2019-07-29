@@ -20,8 +20,6 @@
     "babel-plugin-component": "^1.1.1",
     "@web-pro/babel-preset-pro-vue": "^1.0.4",
     "@web-pro/vue-server": "^1.0.4"
-   
-
   },
   "browserslist": [
     "> 1%",

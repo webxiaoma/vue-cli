@@ -4,11 +4,11 @@
             <div class="asideWrap">
                 <!-- <Aside></Aside> -->
                 <el-drawer
-        title="我是标题"
-        :visible.sync="isDrawerNav"
-        direction="rtl"
-        size="50%">
-        <div>
+                    title="我是标题"
+                    :visible.sync="isDrawerNav"
+                    direction="rtl"
+                    size="50%">
+                    <div>
            测试adsadsfadfa
         </div>
       </el-drawer>
@@ -40,7 +40,7 @@ export default {
         }
     },
     computed:{
-       ...mapState(['isAsideNav','isLoginPage']),
+       ...mapState(['isAsideNav','isLoginPage',"isDrawerNav"]),
     },
     mounted(){
         this.winResize()
