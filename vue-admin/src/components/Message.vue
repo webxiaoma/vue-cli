@@ -191,7 +191,7 @@ export default {
 
 // 手机端样式 小于768
 @media (max-width: @screen-xs) {
-  .header-popper-center{
+  .header-popper-message{
      width:97% !important;
   }
 }
