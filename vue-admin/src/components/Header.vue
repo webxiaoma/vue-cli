@@ -1,14 +1,30 @@
 <template>
     <div class="header">
         <el-row>
-            <el-col :span="10">
+            <el-col :span="4">
                 <div class="navBtn">
-                    <!-- <p  @click="controlNav">
-                         <i :class="!isAsideNav?'iconfont icon-shouqi':'iconfont icon-zhankai'"></i>
-                    </p> -->
-                    <p  @click="controlDrawerNav">
-                         <i :class="!isAsideNav?'iconfont icon-shouqi':'iconfont icon-zhankai'"></i>
+                    <p  @click="controlNav" v-if="screen !== 'xs'">
+                         <i :class="!isAsideNav?'el-icon-s-unfold':'el-icon-s-fold'"></i>
                     </p>
+                    <p  @click="controlDrawerNav" v-if="screen === 'xs'">
+                         <i :class="!isDrawerNav?'el-icon-s-unfold':'el-icon-s-fold'"></i>
+                    </p>
+                </div>
+            </el-col>
+            <el-col :span="8">
+                消息通知
+            </el-col>
+            <el-col :span="12">
+                <div class="list">
+                    <div class="searchWrap">
+                       <Search></Search>
+                   </div>
+                    <div class="item">
+                       <Message></Message>
+                   </div>
+                   <div class="item">
+                       <PCenter></PCenter>
+                   </div>
                 </div>
             </el-col>
         </el-row>
@@ -16,7 +32,10 @@
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex'
+import {mapState,mapActions} from 'vuex';
+import PCenter from './PCenter';
+import Message from './Message';
+import Search from './Search';
 export default {
     data(){
         return {
@@ -24,7 +43,7 @@ export default {
         }
     },
     computed: {
-       ...mapState(['isAsideNav',"isDrawerNav"])
+       ...mapState(['isAsideNav',"isDrawerNav","screen"])
     },
     methods:{
         ...mapActions(['navChange',"drawerChange"]),
@@ -32,12 +51,18 @@ export default {
             this.navChange(!this.isAsideNav)
         },
         controlDrawerNav(){
-            this.drawerChange(!this.isDrawerNav)
+            var status = this.isDrawerNav?false:true;
+            this.drawerChange(status)
         },
         exitLogin(){
-                this.$router.push('/login')
+           this.$router.push('/login')
         }
-  }
+    },
+    components:{
+        PCenter,
+        Message,
+        Search
+    }
     
 }
 </script>
@@ -46,12 +71,14 @@ export default {
 .header{
     width:100%;
     height:60px;
-    box-shadow: 3px 1px 5px 2px #eee;
+    padding:0 10px;
+    box-shadow: 3px 1px 2px 2px #eee;
+    background: #fff;
     .el-row{
         width:100%;
-        height:64px;
+        height:60px;
         .el-col{
-           height:64px;
+           height:60px;
         }
     }
     .navBtn{
@@ -60,16 +87,32 @@ export default {
         align-items:center;
         p{
             height:100%;
-            padding:0 20px;
+            padding:0 10px;
             display: flex;
             justify-content: center;
             align-items:center;
             cursor: pointer;
             i{
-                font-size:20px;
+                font-size:28px;
             }
         }
-
+    }
+    .list{
+        height:100%;
+        display: flex;
+        justify-content: flex-end;
+        .item{
+            cursor: pointer;
+            height:100%;
+            display: inline-block;
+            padding:0 10px;
+            &:hover{
+              background:rgb(248, 252, 255);
+            }
+        }
+        .searchWrap{
+            
+        }
     }
 }
 </style>

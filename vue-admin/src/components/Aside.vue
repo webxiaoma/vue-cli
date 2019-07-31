@@ -1,7 +1,6 @@
 <template>
    <div class='aside'  :style="isAsideNav?{width:'64px'}:''">
-      
-        <!-- <div class="logo">
+        <div class="logo"  v-if="screen !== 'xs'">
             <el-row>
                 <el-col>
                   <div class="logoDiv">
@@ -44,7 +43,7 @@
                   </el-submenu>
                 </el-submenu>
             </el-menu>
-        </div> -->
+        </div>
    </div>
 </template>
 
@@ -57,7 +56,7 @@ export default {
     };
   },
   computed: {
-     ...mapState(['isAsideNav',"isDrawerNav"]),
+     ...mapState(['isAsideNav',"isDrawerNav","screen"]),
   },
   created(){
 

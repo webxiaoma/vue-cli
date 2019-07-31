@@ -10,7 +10,8 @@ import './assets/fonts/iconfont.css'  // 引入icon 图标
 /**
 * elementUl  https://element.eleme.cn/2.0/#/zh-CN/component/installation
 */
-// import "element-ui/lib/theme-chalk/index.css";
+import "element-ui/lib/theme-chalk/display.css";
+
 import {
   Container,
   Row,
@@ -18,7 +19,7 @@ import {
   Menu,
   Submenu,
   MenuItem,
-  Dropdown, 
+  Dropdown,
   DropdownMenu,
   DropdownItem,
   Button,
@@ -30,7 +31,11 @@ import {
   Checkbox,
   Tooltip,
   MenuItemGroup,
-  Drawer
+  Drawer,
+  Popover,
+  Divider,
+  Badge,
+  Autocomplete
 } from "element-ui";
 
 Vue.use(Container);
@@ -52,6 +57,10 @@ Vue.use(Checkbox);
 Vue.use(Tooltip);
 Vue.use(MenuItemGroup);
 Vue.use(Drawer);
+Vue.use(Popover);
+Vue.use(Divider);
+Vue.use(Badge);
+Vue.use(Autocomplete);
 
 
 
