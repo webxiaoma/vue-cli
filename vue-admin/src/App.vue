@@ -9,6 +9,11 @@ import {Header,Footer} from '@/components';
 
 export default {
   name: 'App',
+  data(){
+    return {
+      isDrawerNav:true,
+    }
+  },
   components:{
     Header,
     Footer
@@ -18,6 +23,9 @@ export default {
 
 <style lang="less">
 @import "./theme/base.less";
-.app{}
-
+.app{
+  width:100%;
+  height:100%;
+  min-height:100vh;
+}
 </style>

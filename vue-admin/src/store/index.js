@@ -32,7 +32,7 @@ export default new Vuex.Store({
       state.isLoginPage = val.status;
     },
     DRAWER_CHANGE(state, val){ // 导航drawer变化
-      state.isDrawerNav = val.status;
+      state.isDrawerNav = val;
     }
   },
   strict: false,

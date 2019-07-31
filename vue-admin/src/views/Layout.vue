@@ -3,23 +3,14 @@
        <el-container>
             <div class="asideWrap">
                 <!-- <Aside></Aside> -->
-                <el-drawer
-                    title="我是标题"
-                    :visible.sync="isDrawerNav"
-                    direction="rtl"
-                    size="50%">
-                    <div>
-           测试adsadsfadfa
-        </div>
-      </el-drawer>
             </div>
             <el-container>
-            <div class="container">
+                <div class="container">
                     <div class="headerWrap">
                         <Header></Header>
                     </div>
                     <div class="mainWrap">
-
+                       
                     </div>
                     <div class="footerWrap">
                         <Footer></Footer>

@@ -32,7 +32,7 @@ export default {
             this.navChange(!this.isAsideNav)
         },
         controlDrawerNav(){
-         this.navChange(!this.isDrawerNav)
+            this.drawerChange(!this.isDrawerNav)
         },
         exitLogin(){
                 this.$router.push('/login')
