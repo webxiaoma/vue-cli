@@ -17,7 +17,7 @@ export default new Vuex.Store({
   modules: {
   },
   actions: {
-    navChange({ commit }, val) {
+    navChange({ commit }, val) { // 改变导航
       commit("NAV_CHANGE", val);
     },
     drawerChange({ commit }, val){ // 导航drawer变化

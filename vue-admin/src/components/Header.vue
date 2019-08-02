@@ -2,7 +2,7 @@
     <div class="header">
         <el-row>
             <el-col :span="4">
-                <div class="navBtn">
+                <div class="navBtn"  v-show="!searchInputShow">
                     <p  @click="controlNav" v-if="screen !== 'xs'">
                          <i :class="!isAsideNav?'el-icon-s-unfold':'el-icon-s-fold'"></i>
                     </p>
@@ -12,16 +12,18 @@
                 </div>
             </el-col>
             <el-col :span="8">
-                消息通知
+                <div  v-show="!searchInputShow">
+                   消息通知
+                </div>
             </el-col>
             <el-col :span="12">
                 <div class="list">
                     <div class="searchWrap">
-                       <Search></Search>
+                       <Search v-on:showSearch="showSearch"></Search>
                    </div>
                     <div class="item">
                        <Message></Message>
-                   </div>
+                   </div> 
                    <div class="item">
                        <PCenter></PCenter>
                    </div>
@@ -39,7 +41,7 @@ import Search from './Search';
 export default {
     data(){
         return {
-        
+           searchInputShow:false,
         }
     },
     computed: {
@@ -50,12 +52,17 @@ export default {
         controlNav(){ // 控制导航
             this.navChange(!this.isAsideNav)
         },
-        controlDrawerNav(){
+        controlDrawerNav(){ //移动端控制导航面板
             var status = this.isDrawerNav?false:true;
             this.drawerChange(status)
         },
-        exitLogin(){
+        exitLogin(){ // 退出登录
            this.$router.push('/login')
+        },
+        showSearch(bol){ // 搜索框变化显示出现
+           if(this.screen === 'xs'){
+              this.searchInputShow = bol;
+           }
         }
     },
     components:{
@@ -111,7 +118,7 @@ export default {
             }
         }
         .searchWrap{
-            
+
         }
     }
 }
